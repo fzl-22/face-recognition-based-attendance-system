@@ -9,13 +9,18 @@ conn = sqlite3.connect('database/mahasiswa.db')
 c = conn.cursor()
 
 total_images = 10
-counterNIM = 0
+nim = int(input("Masukkan NIM\t\t: "))
+nama = input("Masukkan Nama Mahasiswa\t: ")
+c.execute("INSERT INTO mahasiswa VALUES (?, ?)", (nim, nama))
+conn.commit()
+
 c.execute("SELECT * FROM mahasiswa")
-list_nim_nama = c.fetchall()
+print(c.fetchall())
+conn.commit()
 
 camera = cv2.VideoCapture(-1)
 counter = 1
-while True and counterNIM != 10:
+while True and counter != 11:
     _, frame = camera.read()
     frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     
@@ -24,17 +29,19 @@ while True and counterNIM != 10:
         cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 3)
         if cv2.waitKey(1) & 0xff == ord('c'):
             roi_face = frame_gray[y:y+h, x:x+w]
-            cv2.imwrite(f'faces data/mahasiswa.{list_nim_nama[counterNIM][0]}.{list_nim_nama[counterNIM][1]}.{counter}.jpg', roi_face)
+            cv2.imwrite(f'faces data/mahasiswa.{nim}.{nama}.{counter}.jpg', roi_face)
             
-            print(f"{counter} Images of {list_nim_nama[counterNIM][1]} Captured")
+            print(f"{counter} Images of {nama} Captured")
             counter += 1
             if counter > total_images:
-                counterNIM += 1
-                counter = 1
                 break
     cv2.imshow('Face Data Acquisition', frame)
     if cv2.waitKey(1) & 0xff == ord('q'):
         break
 camera.release()
 cv2.destroyAllWindows()
-print("Data Acquisition Completed")
+c.execute("SELECT * FROM mahasiswa")
+print("Student Who Have Submitted:\n")
+print(c.fetchall())
+conn.commit()
+conn.close()

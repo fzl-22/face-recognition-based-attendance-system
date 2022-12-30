@@ -1,5 +1,6 @@
 
 import sqlite3
+import pandas as pd
 
 conn = sqlite3.connect('database/mahasiswa.db')
 
@@ -24,15 +25,17 @@ c = conn.cursor()
 #           (1203210050, "DHARMA MAR'IE SATOTO")
 #           """)
 
-c.execute("SELECT * FROM mahasiswa")
-x = c.fetchall()
-print(x)
+# c.execute("DELETE FROM mahasiswa")
+
+# c.execute("SELECT * FROM mahasiswa")
+# x = c.fetchall()
+# print(x)
+
+df = pd.read_sql_query("SELECT * FROM mahasiswa", conn)
+print(df)
 
 conn.commit()
 
 conn.close()
-
-
-
 # c.execute("SELECT * FROM employees WHERE lname='Schafer'")
 # print(c.fetchone())
