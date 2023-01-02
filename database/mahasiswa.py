@@ -31,9 +31,13 @@ c = conn.cursor()
 # x = c.fetchall()
 # print(x)
 
-df = pd.read_sql_query("SELECT * FROM mahasiswa", conn)
-print(df)
+# df = pd.read_sql_query("SELECT * FROM mahasiswa", conn)
+# print(df)
 
+c.execute("DELETE FROM mahasiswa WHERE full_name = 'IVAN SHOLANA'")
+
+c.execute("SELECT * FROM mahasiswa")
+print(c.fetchall())
 conn.commit()
 
 conn.close()

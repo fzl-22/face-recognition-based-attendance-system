@@ -11,6 +11,8 @@ font = cv2.FONT_HERSHEY_COMPLEX
 conn = sqlite3.connect('database/mahasiswa.db')
 c = conn.cursor()
 
+
+
 camera = cv2.VideoCapture(-1)
 while True:
     _, frame = camera.read()
@@ -32,8 +34,6 @@ while True:
 camera.release()
 cv2.destroyAllWindows()
 conn.close()
-
-        
 
 conn.close()
     
