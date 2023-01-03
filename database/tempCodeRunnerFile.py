@@ -1,3 +1,1 @@
-")
-x = c.fetchall()
-print(x)
+c.execute("DELETE FROM mahasiswa")
