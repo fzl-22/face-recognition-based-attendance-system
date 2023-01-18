@@ -26,15 +26,16 @@ while True and counter != 11:
     
     faces = face_cascade.detectMultiScale(frame_gray, 1.3, 3)
     for x, y, w, h in faces:
-        cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 3)
-        if cv2.waitKey(1) & 0xff == ord('c'):
-            roi_face = frame_gray[y:y+h, x:x+w]
-            cv2.imwrite(f'faces data/mahasiswa.{nim}.{nama}.{counter}.jpg', roi_face)
+        if w*h >= 40000 and w*h <= 90000:
+            cv2.rectangle(frame, (x,y), (x+w, y+h), (0,255,0), 3)
+            if cv2.waitKey(1) & 0xff == ord('c'):
+                roi_face = frame_gray[y:y+h, x:x+w]
+                cv2.imwrite(f'faces data/mahasiswa.{nim}.{nama}.{counter}.jpg', roi_face)
             
-            print(f"{counter} Images of {nama} Captured")
-            counter += 1
-            if counter > total_images:
-                break
+                print(f"{counter} Images of {nama} Captured")
+                counter += 1
+                if counter > total_images:
+                    break
     cv2.imshow('Face Data Acquisition', frame)
     if cv2.waitKey(1) & 0xff == ord('q'):
         break

@@ -3,6 +3,8 @@ import numpy as np
 import cv2
 import pandas as pd
 import statistics as stats
+import time
+from datetime import datetime
 
 face_cascade = cv2.CascadeClassifier('cascade classifier/face-detect.xml')
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
@@ -19,7 +21,9 @@ print(attendance_df)
 confidence_list = []
 
 camera = cv2.VideoCapture(-1)
-while True:
+
+start_time = time.time()
+while (time.time() - start_time) < 1800: # open camera for 30 minutes (1800 seconds)
     _, frame = camera.read()
     frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     
@@ -35,9 +39,9 @@ while True:
             conn.commit()
             confidence_list.append(full_name)
             cv2.putText(frame, f"{full_name}", (x-20, y-20), font, 0.5, (0, 255, 0), 3)
-            if len(confidence_list) == 100:
+            if len(confidence_list) == 50:
                 most_common_name = stats.mode(confidence_list)
-                if confidence_list.count(most_common_name) >= 80: 
+                if confidence_list.count(most_common_name) >= 40: 
                     attendance_df['attendance'].loc[attendance_df['full_name'] == most_common_name] = "Hadir"
                 confidence_list.clear()
     cv2.imshow('Face Recognition', frame)
@@ -47,4 +51,7 @@ camera.release()
 print(attendance_df)
 cv2.destroyAllWindows()
 conn.close()
-    
+
+now = datetime.now()
+datetime_string = now.strftime("%d-%m-%Y %H:%M:%S")
+attendance_df.to_csv(f"result/PCD {datetime_string}.csv")
