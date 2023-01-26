@@ -5,7 +5,7 @@ Face-Recognition-Based Student Attendance System using Haar-Cascade Classifier a
 Sesuai judul repository, program ini memiliki tujuan untuk melakukan absensi mahasiswa dengan basis pengenalan wajah. Sistem absensi ini juga dibuat dengan mengimplementasikan otomasi pada sistem operasi Linux, sehingga cocok dijalankan di minikomputer seperti Raspberry Pi 4.
 
 ## 2. Persiapan
-Sebelum menjalankan program lakukan persiapan berikut (diasumsikan user menggunakan package manager Conda dan Python versi 3.10.8):
+Sebelum menjalankan program, lakukan persiapan berikut (gunakan Python versi 3.10.8):
 
 1. Clone repository ini ke direktori lokal:
 `````
@@ -19,7 +19,7 @@ cd face-recognition-based-attendance-system
 
 3. Install package-package yang dibutuhkan di file `requirements.txt`:
 `````
-conda install --file requirements.txt
+pip install -r requirements.txt
 `````
 
 4. Buat file crontab:
