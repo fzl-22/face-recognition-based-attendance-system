@@ -1,0 +1,6 @@
+
+# start python script to record with opencv
+0 10 * * 2 /usr/bin/bash /home/ahmadfaisal/Documents/College/Semester_3/Tugas_Besar/Revisi_Digital_Image_Processing/face-recognition-based-attendance-system/run.sh >> /home/ahmadfaisal/Documents/College/Semester_3/Tugas_Besar/Revisi_Digital_Image_Processing/face-recognition-based-attendance-system/cron.log 2>&1
+
+# remove .csv file at the end of each month
+59 23 28-31 * * [ “$(date +\%d -d tomorrow)” = “01” ] && /usr/bin/bash /home/ahmadfaisal/Documents/College/Semester_3/Tugas_Besar/Revisi_Digital_Image_Processing/face-recognition-based-attendance-system/monthly_zip.sh

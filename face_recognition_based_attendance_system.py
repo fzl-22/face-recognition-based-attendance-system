@@ -5,13 +5,18 @@ import pandas as pd
 import statistics as stats
 import time
 from datetime import datetime
+# import os
+# from PyQt5.QtCore import QLibraryInfo
 
-face_cascade = cv2.CascadeClassifier('cascade classifier/face-detect.xml')
+# os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = QLibraryInfo.location(QLibraryInfo.PluginsPath)
+# print("Hello World:", time.time())
+
+face_cascade = cv2.CascadeClassifier('/home/ahmadfaisal/Documents/College/Semester_3/Tugas_Besar/Revisi_Digital_Image_Processing/face-recognition-based-attendance-system/cascade classifier/face-detect.xml')
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
-face_recognizer.read("face recognizer/face_recognizer.yml")
+face_recognizer.read("/home/ahmadfaisal/Documents/College/Semester_3/Tugas_Besar/Revisi_Digital_Image_Processing/face-recognition-based-attendance-system/face recognizer/face_recognizer.yml")
 font = cv2.FONT_HERSHEY_COMPLEX
 
-conn = sqlite3.connect('database/mahasiswa.db')
+conn = sqlite3.connect('/home/ahmadfaisal/Documents/College/Semester_3/Tugas_Besar/Revisi_Digital_Image_Processing/face-recognition-based-attendance-system/database/mahasiswa.db')
 c = conn.cursor()
 
 attendance_df = pd.read_sql_query("SELECT * FROM mahasiswa", conn)
@@ -44,14 +49,14 @@ while (time.time() - start_time) < 1800: # open camera for 30 minutes (1800 seco
                 if confidence_list.count(most_common_name) >= 40: 
                     attendance_df['attendance'].loc[attendance_df['full_name'] == most_common_name] = "Hadir"
                 confidence_list.clear()
-    cv2.imshow('Face Recognition', frame)
+    # cv2.imshow('Face Recognition', frame)
     if cv2.waitKey(1) & 0xff == ord('q'):
         break
 camera.release()
 print(attendance_df)
-cv2.destroyAllWindows()
+# cv2.destroyAllWindows()
 conn.close()
 
 now = datetime.now()
 datetime_string = now.strftime("%d-%m-%Y %H:%M:%S")
-attendance_df.to_csv(f"result/PCD {datetime_string}.csv")
+attendance_df.to_csv(f"/home/ahmadfaisal/Documents/College/Semester_3/Tugas_Besar/Revisi_Digital_Image_Processing/face-recognition-based-attendance-system/result/PCD {datetime_string}.csv")
