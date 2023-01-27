@@ -27,4 +27,21 @@ pip install -r requirements.txt
 crontab -e
 `````
 
-5. Masukkan script cron untuk otomasi yang mengarah ke file `run.sh` dan `monthly_zip.sh` dengan memakai script yang ada di file `crontab_script.txt` (sesuaikan dengan direktori user). 
+5. Masukkan script cron untuk otomasi yang mengarah ke file `run.sh` dan `monthly_zip.sh` dengan memakai script yang ada di file `crontab_script.txt` (sesuaikan dengan direktori user).
+
+## 3. Cara Menjalankan Program
+
+1. Izinkan file `run.sh` dan `monthly_zip.sh` agar bisa dieksekusi oleh user:
+`````
+chmod u+x run.sh monthly_zip.sh
+`````
+2. Tunggu hingga script dieksekusi oleh cron sesuai perintah pada crontab.
+
+3. (Optional). Eksekusi program secara mandiri dengan perintah berikut:
+`````
+python main.py
+`````
+atau
+`````
+./run.sh
+`````
