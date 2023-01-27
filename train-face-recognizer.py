@@ -20,6 +20,8 @@ for path_image in path_images:
     image_array_list.append(image_array)
     image_nim_list.append(image_nim)
 
+print("Arr: ", image_array_list)
+print("Nim: ", image_nim_list)
 face_recognizer.train(image_array_list, np.array(image_nim_list))
 face_recognizer.save('face recognizer/face_recognizer.yml')
 print("Face Recognizer Has Been Successfully Trained!")

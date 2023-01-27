@@ -1,4 +1,3 @@
-
 import sqlite3
 import pandas as pd
 
@@ -25,9 +24,11 @@ c = conn.cursor()
 #           (1203210050, "DHARMA MAR'IE SATOTO")
 #           """)
 
-c.execute("DELETE FROM mahasiswa")
+# c.execute("DELETE FROM mahasiswa")
 
-# c.execute("SELECT * FROM mahasiswa")
+c.execute("SELECT * FROM mahasiswa")
+res = c.fetchall()
+print(res)
 # x = c.fetchall()
 # print(x)
 

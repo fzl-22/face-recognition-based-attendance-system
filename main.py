@@ -44,12 +44,12 @@ while (time.time() - start_time) < 1800: # open camera for 30 minutes (1800 seco
                 if confidence_list.count(most_common_name) >= 40: 
                     attendance_df['attendance'].loc[attendance_df['full_name'] == most_common_name] = "Hadir"
                 confidence_list.clear()
-    # cv2.imshow('Face Recognition', frame)
+    # cv2.imshow('Face Recognition', frame) <- uncomment jika dijalankan tanpa cron
     if cv2.waitKey(1) & 0xff == ord('q'):
         break
 camera.release()
 print(attendance_df)
-# cv2.destroyAllWindows()
+# cv2.destroyAllWindows() <- uncomment jika dijalankan tanpa cron
 conn.close()
 
 now = datetime.now()

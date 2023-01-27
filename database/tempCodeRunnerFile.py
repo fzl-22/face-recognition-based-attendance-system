@@ -1,1 +1,0 @@
-c.execute("DELETE FROM mahasiswa")
