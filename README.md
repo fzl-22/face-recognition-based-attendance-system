@@ -9,7 +9,7 @@ Sebelum menjalankan program, lakukan persiapan berikut (gunakan Python versi 3.1
 
 1. Clone repository ini ke direktori lokal:
 `````
-git clone git@github.com:fzl-22/face-recognition-based-attendance-system.git
+git clone https://github.com/fzl-22/face-recognition-based-attendance-system.git
 `````
 
 2. Navigasikan ke direktori:
