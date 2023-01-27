@@ -44,6 +44,7 @@ while (time.time() - start_time) < 1800: # open camera for 30 minutes (1800 seco
             conn.commit()
             confidence_list.append(full_name)
             cv2.putText(frame, f"{full_name}", (x-20, y-20), font, 0.5, (0, 255, 0), 3)
+            print(full_name)
             if len(confidence_list) == 50:
                 most_common_name = stats.mode(confidence_list)
                 if confidence_list.count(most_common_name) >= 40: 
