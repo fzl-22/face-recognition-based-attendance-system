@@ -45,3 +45,4 @@ atau
 `````
 ./run.sh
 `````
+## 6. Penjelasan Setiap Folder dan File
